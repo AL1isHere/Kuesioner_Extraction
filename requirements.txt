@@ -1,0 +1,8 @@
+streamlit
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+Pillow
+pdf2image
+openpyxl
+numpy
+matplotlib
