@@ -90,7 +90,7 @@ def run_extraction_workflow(uploaded_pdf_bytes, selected_gender_str,
                         char_image_pil_single, model_c, device_obj, transform_c
                     )
                     
-                    if char_pred == "?" or confidence < config.CHAR_CLASSIFICATION_THRESHOLD : 
+                    if char_pred == "?" or char_pred == "Kosong" or confidence < config.CHAR_CLASSIFICATION_THRESHOLD : 
                         recognized_string += "?" 
                     else:
                         recognized_string += char_pred
