@@ -169,11 +169,16 @@ def model_classify_char(char_image_pil, model_classifier, device_obj, transform_
     if char_image_pil.width < config.MIN_CHAR_BOX_WIDTH or char_image_pil.height < config.MIN_CHAR_BOX_HEIGHT:
         return "?", 0.0
     try:
-        gray_char = char_image_pil.convert('L')
-        stat = ImageStat.Stat(gray_char)
-        if stat.stddev[0] < 7 and stat.mean[0] > 240: 
-            return "?", 0.0 
-    except Exception: pass 
+        gray_char_img = char_image_pil.convert('L')
+        stats = ImageStat.Stat(gray_char_img)
+        is_likely_empty = (stats.stddev[0] < config.EMPTY_BOX_MAX_STD_DEV and 
+                             stats.mean[0] > config.EMPTY_BOX_MIN_MEAN)
+        if is_likely_empty:
+            return "?", 0.0
+    except Exception as e_stat:
+        print (f"Peringan saat analisis statistik gambar: {e_stat}")
+        pass
+    
     img_tensor = transform_classifier(char_image_pil.convert("RGB")).unsqueeze(0).to(device_obj)
     model_classifier.eval()
     with torch.no_grad():
