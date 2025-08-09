@@ -7,7 +7,7 @@ import torch
 # --- Path Aplikasi ---
 APP_DATA_PATH = 'app_data'
 SSD_MODEL_FILENAME = 'ssd_mobilenetv3_large_kotakkecil.pth'
-CHAR_CLASSIFIER_MODEL_FILENAME = 'mobilenetv3_finetuned_21class.pth'
+CHAR_CLASSIFIER_MODEL_FILENAME = 'mobilenetv3_small_char_classifier_augmented_21Class.pth'
 TEMP_PROCESSING_DIR = 'temp_streamlit_processing_files' 
 
 # Membuat path lengkap
@@ -31,7 +31,7 @@ SSD_NMS_IOU_THRESHOLD = 0.3
 SSD_INPUT_SIZE = (320, 320) 
 
 # Parameter Filter dan Klasifikasi
-CHAR_CLASSIFICATION_THRESHOLD = 0.3
+CHAR_CLASSIFICATION_THRESHOLD = 0.1
 MIN_CHAR_BOX_WIDTH = 5    
 MIN_CHAR_BOX_HEIGHT = 10   
 MAX_CHAR_BOX_ASPECT_RATIO = 2.5 
